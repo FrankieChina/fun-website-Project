@@ -17,8 +17,7 @@ def get_start_page():
 
 @app.route("/user/<username>")
 def user(username):
-    return (f'<h1 style="text-align: center"> Hi  {username}!</h1>'
-            '<img src="https://media2.giphy.com/media/AEWVSewz8sSm3HFoib/200w.webp?cid=ecf05e47k30bssjo4p6ralmnesdq3j32rqy6lo7zmfhhg0mq&ep=v1_gifs_search&rid=200w.webp&ct=g" align="bottom">')
+    return (f'<h1 style="text-align: center"> Hi  {username}!</h1>')
 
 
 @app.route("/start/backUp")

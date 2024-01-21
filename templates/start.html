@@ -4,43 +4,74 @@
     <meta charset="UTF-8">
     <title>Start Page</title>
     <link rel="stylesheet" href="../static/styles.css">
+
 </head>
-<body>
-    <h1>Would you want to do a 5k with me?</h1>
-    <h3>(I'll pay)</h3>
-    <button id="yesButton" class="animated-button">Yes</button>
-    <button id="noButton" onclick="moveButton()" class="btn btn-primary">No</button>
+<body class="spacer layer2">
+<div class="center-text">
+    <h1>You wanna study some time?</h1>
+</div>
+<button id="yesButton" class="animated-button confetti-button button-26">Yes</button>
+<button id="noButton" class="button-26">Nah</button>
 
-  <script>
-      //Get references to the button
-      const button = document.getElementById('noButton');
-      const button1 = document.getElementById('yesButton');
-      //Initialize click count
-      let clickCount = 0;
 
-      button1.addEventListener('click', function () {
-          window.location.href = "{{url_for('get_miracle_page')}}";
-      })
-      //Add a click event listener
-      button.addEventListener('click', function () {
-        clickCount++;
-        if (clickCount >= 3) {
-          window.location.href = "{{url_for('get_backup_page')}}";
-      }
-      })
+<script>
+    const button = document.getElementById('noButton');
+    // BELOW CODE: Moves the mouse around when mouse over
+    // button.addEventListener('mouseover', function () {
+    //     button.style.left = `${Math.ceil(Math.random() * 90)}%`;
+    //     button.style.top = `${Math.ceil(Math.random() * 90)}%`;
+    // });
+    button.addEventListener('click', function () {
+        window.location.href = "{{url_for('get_backup_page')}}";
+    })
+    // //Get references to the button
+    // const button = document.getElementById('noButton');
+    const yesButton = document.getElementById('yesButton');
 
-    function moveButton() {
-      var button = document.getElementById('noButton');
-      var maxX = window.innerWidth - button.offsetWidth;
-      var maxY = window.innerHeight - button.offsetHeight;
+    yesButton.addEventListener('click', function () {
+        setTimeout(delayClick, delay);
+    })
+     // BELOW CODE: Will make button appear in different spots and will redirect to actual page in 3 clicks
+     // //Initialize click count
+    // let clickCount = 0;
+    // //Add a click event listener
+    // button.addEventListener('click', function () {
+    //     clickCount++;
+    //     if (clickCount >= 3) {
+    //         window.location.href = "{{url_for('get_backup_page')}}";
+    //     }
+    // })
 
-      var randomX = Math.floor(Math.random() * maxX);
-      var randomY = Math.floor(Math.random() * maxY);
-
-      button.style.left = randomX + 'px';
-      button.style.top = randomY + 'px';
+</script>
+<script>
+    function delayClick() {
+        window.location.href = "{{url_for('get_backup_page')}}";
     }
 
-  </script>
+    const delay = 1000; //timer until redirect
+</script>
+<!--CODE Below: Release the confetti effects-->
+<!--<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>-->
+<!--<script>-->
+<!--    document.getElementsByClassName("confetti-button")[0].addEventListener("click", () => {-->
+<!--        confetti({-->
+<!--            spread: 180,-->
+<!--            particleCount: 200-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
+
+<!--when user return to page, reload back to original state-->
+<script>
+    window.addEventListener( "pageshow", function ( event ) {
+  var historyTraversal = event.persisted ||
+                         ( typeof window.performance != "undefined" &&
+                              window.performance.getEntriesByType("navigation")[0].entryType === "back_forward" );
+  if ( historyTraversal ) {
+    // Handle page restore.
+    window.location.reload();
+  }
+});
+</script>
 </body>
 </html>

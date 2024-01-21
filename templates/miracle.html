@@ -4,10 +4,51 @@
     <meta charset="UTF-8">
     <title>Unexpected</title>
     <link rel="stylesheet" href="/static/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/kute.js@2.1.2/dist/kute.min.js"></script>
 </head>
 <body>
+<div class="text-container">
     <h1>Was this a miracle or a miss click??</h1>
     <h2>Either way, you already agreed</h2>
-    <h3>Insert happy gif</h3>
+</div>
+<div class="text-container">
+<h3>insert happy gif</h3>
+</div>
+
+<script>
+    const tween = KUTE.fromTo(
+        '#blob1',
+        {path: '#blob1'},
+        {path: '#blob2'},
+        {repeat: 999, duration: 3000, yoyo: true}
+    ).start();
+</script>
+<script>
+    var duration = 30 * 1000;
+    var end = Date.now() + duration;
+
+    (function frame() {
+        // launch a few confetti from the left edge
+        confetti({
+            particleCount: 7,
+            angle: 60,
+            spread: 55,
+            origin: {x: 0}
+        });
+        // and launch a few from the right edge
+        confetti({
+            particleCount: 7,
+            angle: 120,
+            spread: 55,
+            origin: {x: 1}
+        });
+
+        // keep going until we are out of time
+        if (Date.now() < end) {
+            requestAnimationFrame(frame);
+        }
+    }());
+</script>
 </body>
 </html>
